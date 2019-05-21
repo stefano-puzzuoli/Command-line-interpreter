@@ -1,6 +1,3 @@
-# Student name: Stefano Puzzuoli
-# Student number: 17744421
-
 # This program should be executed in python 3
 
 #!/usr/bin/python3
