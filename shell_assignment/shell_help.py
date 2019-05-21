@@ -1,6 +1,3 @@
-# Student name: Stefano Puzzuoli
-# Student number: 17744421
-
 # This module is compatible with python 3
 
 #!/usr/bin/python3
