@@ -1,0 +1,264 @@
+Student name: Stefano Puzzuoli
+Student number: 17744421
+
+This program should be executed in python 3.
+
+This file must be in the same directory of the of myshell.py, shell_help.py, dir_help.py files.
+
+------------------------------------------------------------------------------
+
+NAME
+   myshell - a shell or command language interpreter program.
+
+SYNOPSIS
+   python3 myshell.py [BATCHFILE]
+
+DESCRIPTION
+   myshell.py is a command language interpreter program. The 
+   commands entered by the user are read by the shell, interpreted
+   and executed. The shell is therefore an interface for humans,
+   i.e. a program that accepts commands typed by the user, transforms
+   them into instructions executable by the computer, and sends them
+   to be executed. The commands are typed by the user on the shell
+   command line. The command line is a digitable line that starts at
+   the prompt and the prompt is a character or set of characters that
+   waits for user input.
+
+   Argument list processing
+     If the shell is invoked with a command line argument, then it
+     is assumed that the argument is a batchfile name and that the
+     file contains a set of command lines for the shell to process.
+     When the end-of-file is reached, the shell will exit. This
+     signifies that the program shell allows to provide command line
+     input from a file. Differently, if the program is invoked without
+     a command line argument, the shell will solicit input from the
+     user via a prompt on the display.
+
+------------------------------------------------------------------------------
+
+BASIC SHELL FEATURES
+
+   SHELL SYNTAX
+     When the shell reads input, it proceeds through a sequence of 
+     operations. The shell reads its input and splits the input into words
+     and operators. It then breaks down these tokens into commands
+     and other constructs and eliminates the special interpretation of certain
+     words or characters, supplementing others. It finally then redirects
+     input and output as necessary, executes the stated command, waits for
+     the command’s exit status, and makes that exit status available for
+     additional inspection or processing.
+
+   BUILT-IN COMMANDS
+     The Shell's Built-in commands are the following:
+
+       cd [DIRECTORY]
+            -Change the current working directory to DIRECTORY. If DIRECTORY
+             is not supplied, the current working directory is reported.
+
+       clr  
+            -Clear the terminal screen.
+
+       dir [OPTION]... [FILE]...
+            -Display a list of files and subdirectories in FILEs (the
+             current directory by default). Sort entries alphabetically
+             if none of the options "-alr" are specified.
+
+             Options:
+               -a, --all                  show hidden files too
+               -l                         use a long listing format
+               -r, --reverse              sort entries in reverse alphabetical
+                                          order
+               -R, --recursive            list subdirectories recursively
+
+       environ
+            -List all the environment variables.
+
+       echo [ARG ...]
+            -Write arguments to the standard output.
+             Display the ARGs, separated by a single space character and
+             followed by a newline, on the standard output.
+
+       pause
+            -Pause operation of the shell until "Enter" is pressed.
+
+       help [CMD]
+            -List user manual with "help" or detailed information about
+             individual commands with 'help <CMD>'.
+
+       quit
+            -Exits the shell.
+
+
+------------------------------------------------------------------------------
+
+ENVIRONMENT
+
+   INTRODUCTION
+     The environment is an area that the shell builds every time that it
+     starts a session that contains variables that define system properties.
+     When interacting with your machine through a shell session, there are
+     many pieces of information that your shell compiles to determine its
+     behaviour and access to resources. Some of these settings are present
+     in the configuration settings and others are established by user input. 
+     One way that the shell keeps track of all of these settings and details
+     is through this area called the environment.
+
+   ENVIRONMENT AND SHELL VARIABLES 
+     Every time a shell session spawns, a process takes place to gather and
+     compile information that should be available to the shell process and
+     its child processes. It acquires the data for these settings from a
+     variety of distinct files and settings on the system. Basically the
+     environment supplies a medium through which the shell process can get
+     or set settings and, sequentially, pass these on to its child processes. 
+     The environment is implemented as strings that represent key-value
+     pairs, of the form name=value. The keys in these scenarios are 
+     variables and they can be one of two types, environmental variables or
+     shell variables.
+
+     Environmental variables: variables that are defined for the current
+     shell and are inherited by any child shells or processes. Environmental
+     variables are used to pass data into processes that are spawned
+     from the shell.
+     Shell variables: variables that are contained exclusively within the
+     shell in which they were set or defined. They are usually used to keep
+     track of short-term data, like the current working directory.
+
+   COMMON ENVIRONMENTAL VARIABLES
+     SHELL: The full path from which the shell program was executed.
+
+     USER: The current logged in user.
+
+     PWD: The current working directory.
+
+     OLDPWD: The previous working directory.
+ 
+     HOME: The current user's home directory.
+
+   USAGE DESCRIPTION
+     Environmental and shell variables are always present in shell
+     sessions and can be very useful. They are an compelling way for a
+     parent process to set configuration details for its children, and are
+     a way of setting options external to files. This has many advantages in
+     specific situations. For example, some deployment mechanisms depend on
+     environmental variables to configure authentication data. This
+     is convenient because it does not require keeping these in files that may
+     be seen by external parties. There are plenty of other, more mundane,
+     but more common scenarios where it will be necessary to read or alter
+     the environment of the system.
+
+
+------------------------------------------------------------------------------
+
+INPUT/OUTPUT REDIRECTION
+
+   INTRODUCTION
+     Before a command is executed, its input and output may be redirected
+     using a special notation interpreted by the shell. Redirection allows
+     commands’ file handles to be opened, closed, made to refer to different
+     files, and can change the files the command reads from and writes to.
+     Redirection may furthermore be utilized to modify file handles in the current
+     shell execution environment. The following redirection operators may
+     precede or appear anywhere within a simple command or may follow a
+     command. Redirections are executed in the order they occur, from
+     left to right.
+
+   REDIRECTING INPUT (<)
+     The input redirection operator is '<'.
+     Redirection of input causes the file whose name results from the
+     expansion of INPUTFILE to be opened for reading on the program
+     PROGRAMNAME, or the standard input if PROGRAMNAME is not specified.
+
+     The general format for redirecting input is:
+
+       [PROGRAMNAME] < INPUTFILE
+
+     Running this previous line in the command line of the shell will
+     execute the program PROGRAMNAME with the stdin FILE stream replaced
+     by INPUTFILE.
+
+
+   REDIRECTING OUTPUT (> and >>)
+
+     TRUNCATING REDIRECTED OUTPUT (>)
+       The truncating redirected output operator is '>'.
+       Redirection of output causes the file whose name results from the
+       expansion of OUTFILE to be opened for writing on the program
+       PROGRAMNAME, or the standard output if PROGRAMNAME is not specified.
+       If the file does not exist it is created, otherwise, if it does, it is
+       truncated to zero size.
+
+       The general format for truncating redirected output is:
+
+         [PROGRAMNAME] > OUTFILE
+
+       Running this previous line in the command line of the shell will
+       execute the program PROGRAMNAME with the stdout FILE stream replaced
+       by OUTFILE. The outputfile is created if it does not exist and
+       truncated if it does.
+
+
+     APPENDING REDIRECTED OUTPUT (>>)
+       The appending redirected output operator is '>>'.
+       Redirection of output in this fashion causes the file whose name
+       results from the expansion of OUTFILE to be opened for appending
+       on file descriptor PROGRAMNAME, or the standard output if
+       PROGRAMNAME is not specified. If the file does not exist it is
+       created.
+
+       The general format for appending output is:
+
+         [PROGRAMNAME] >> OUTFILE
+
+       Running this previous line in the command line of the shell will
+       execute the program PROGRAMNAME with the stdout FILE stream replaced
+       by OUTFILE. The outputfile is created if it does not exist and
+       appended to it if it does.
+
+
+------------------------------------------------------------------------------
+
+FOREGROUND AND BACKGROUND PROCESSES
+
+   MANAGING FOREGROUND PROCESSES
+     By default, processes are started in the foreground. Until the 
+     program exits or changes state, the user will not be able to
+     interact with the shell. Some foreground commands exit very quickly
+     and return to a shell prompt almost immediately. Other foreground
+     commands take more to execute, blocking shell access for the
+     duration of the process. This might be because the command is
+     performing a more extensive operation or because it is configured
+     to run until it is explicitly stopped or until it receives other
+     user input.
+     An example of starting a foreground process is:
+
+       :~$ echo "Hello World"
+
+     This would print "Hello World" to the terminal and then return the
+     user to the command prompt.
+
+
+   MANAGING BACKGROUND PROCESSES
+     The prime alternative to running a process in the foreground is to
+     let it to execute in the background. A background process is
+     associated with the particular terminal that initialized it, but does
+     not block access to the shell. Alternatively, it runs in the background,
+     allowing the user to interact with the system while the command
+     executes. Due to the way that a foreground process interacts with
+     its terminal, there can only be a single foreground process for each
+     terminal window. Since background processes return control to the
+     shell immediately without waiting for the process to complete, many
+     background processes can be executed at the same time.
+     The user can start a background process by appending an ampersand
+     character ("&") to the end of the commands. This orders the shell not
+     to wait for the process to finish, but to begin execution
+     and to immediately return the user to a prompt. The output of the
+     command will still display in the terminal (unless redirected), but
+     the user can type additional commands as the background process
+     continues.
+     An example of starting a background process is:
+
+       :~$ python3 programname &
+
+     This would start the execution of the new process and immediately
+     return the user to the prompt, without waiting for the process to
+     terminate.
